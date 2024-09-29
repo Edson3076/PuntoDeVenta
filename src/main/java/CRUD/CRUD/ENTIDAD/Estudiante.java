@@ -19,15 +19,15 @@ public class Estudiante {
     private String nit_dpi;
     @Column(name = "nombre",nullable = false)
     private String nombre;
-    @Column(name = "direccion",nullable = false)
+    @Column(name = "direccion")
     private String direccion;
     @Column(name = "email",nullable = false)
     private String email;
     @Column(name = "notas")
     private String notas;
-    @Column(name = "fecha_ingreso",nullable = false)
+    @Column(name = "fecha_ingreso")
     private LocalDate fecha_ingreso;
-    @Column(name = "estado",nullable = false)
+    @Column(name = "estado")
     private String estado;
     
     public Estudiante() {
