@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "estudiamtes")
-public class Estudiante {
+public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,10 +30,10 @@ public class Estudiante {
     @Column(name = "estado")
     private String estado;
     
-    public Estudiante() {
+    public Cliente() {
     }
 
-    public Estudiante(Long id, String nit_dpi, String nombre, String direccion, String email, String notas, LocalDate fecha_ingreso, String estado) {
+    public Cliente(Long id, String nit_dpi, String nombre, String direccion, String email, String notas, LocalDate fecha_ingreso, String estado) {
         this.id = id;
         this.nit_dpi = nit_dpi;
         this.nombre = nombre;
@@ -44,7 +44,7 @@ public class Estudiante {
         this.estado = estado;
     }
 
-    public Estudiante(String nit_dpi, String nombre, String direccion, String email, String notas, LocalDate fecha_ingreso, String estado) {
+    public Cliente(String nit_dpi, String nombre, String direccion, String email, String notas, LocalDate fecha_ingreso, String estado) {
         this.nit_dpi = nit_dpi;
         this.nombre = nombre;
         this.direccion = direccion;

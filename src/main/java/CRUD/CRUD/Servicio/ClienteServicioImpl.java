@@ -1,32 +1,32 @@
 package CRUD.CRUD.Servicio;
 
-import CRUD.CRUD.ENTIDAD.Estudiante;
-import CRUD.CRUD.Repositorio.EstudianteRepositorio;
+import CRUD.CRUD.ENTIDAD.Cliente;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import CRUD.CRUD.Repositorio.ClienteRepositorio;
 
 @Service
-public class EstudianteServicioImpl implements EstudianteServicio{
+public class ClienteServicioImpl implements ClienteServicio{
     @Autowired
-    private EstudianteRepositorio repositorio;
+    private ClienteRepositorio repositorio;
     @Override
-    public List<Estudiante> listarTodosLosEstudiantes() {        
+    public List<Cliente> listarTodosLosEstudiantes() {        
         return repositorio.findAll();
     }
 
     @Override
-    public Estudiante guardarEstudiante(Estudiante estudiante) {
+    public Cliente guardarEstudiante(Cliente estudiante) {
         return repositorio.save(estudiante);
     }
 
     @Override
-    public Estudiante obtenerEstudiantePorId(Long id) {
+    public Cliente obtenerEstudiantePorId(Long id) {
         return repositorio.findById(id).get();
     }
 
     @Override
-    public Estudiante actualizarEstudiante(Estudiante estudiante) {
+    public Cliente actualizarEstudiante(Cliente estudiante) {
         return repositorio.save(estudiante);
     }
 

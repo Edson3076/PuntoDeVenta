@@ -1,11 +1,11 @@
 package CRUD.CRUD;
 
-import CRUD.CRUD.ENTIDAD.Estudiante;
-import CRUD.CRUD.Repositorio.EstudianteRepositorio;
+import CRUD.CRUD.ENTIDAD.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import CRUD.CRUD.Repositorio.ClienteRepositorio;
 
 @SpringBootApplication
 public class CrudApplication implements CommandLineRunner{
@@ -14,7 +14,7 @@ public class CrudApplication implements CommandLineRunner{
 		SpringApplication.run(CrudApplication.class, args);
 	}
     @Autowired
-    private EstudianteRepositorio repositorio;
+    private ClienteRepositorio repositorio;
     @Override
     public void run(String... args) throws Exception {
         /*
