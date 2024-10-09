@@ -10,6 +10,7 @@ import CRUD.CRUD.Repositorio.ClienteRepositorio;
 public class ClienteServicioImpl implements ClienteServicio{
     @Autowired
     private ClienteRepositorio repositorio;
+    
     @Override
     public List<Cliente> listarTodosLosEstudiantes() {        
         return repositorio.findAll();

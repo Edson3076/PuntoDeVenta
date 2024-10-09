@@ -13,9 +13,9 @@
             </div>
             <div class="row">
                 <div class="col-lg-9">
-                    <a th:href="@{/nuevo}" class="btn btn-primary btn-sm mb3">Agregar Cliente</a>
-                    <a th:href="@{/producto}" class="btn btn-primary btn-sm mb3">Ingresar Producto</a>
-                    <a th:href="@{/venta}" class="btn btn-primary btn-sm mb3">Realizar Venta</a>
+                    <a th:href="@{/nuevo_cliente}" class="btn btn-primary btn-sm mb3">Agregar Cliente</a>
+                    <a th:href="@{/nuevo_producto}" class="btn btn-primary btn-sm mb3">Ingresar Producto</a>
+                    <a th:href="@{/nueva_venta}" class="btn btn-primary btn-sm mb3">Nueva Venta</a>
                 </div>
             </div><br>
             <table class="table table-striped table-bordered">
@@ -47,5 +47,31 @@
                     </tr>
                 </tbody> 
         </div>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">codigo</th>
+                    <th scope="col">cantidad</th>
+                    <th scope="col">descripcion</th>
+                    <th scope="col">categoria</th>
+                    <th scope="col">precio_unitario</th>
+                    <th scope="col">costo_unitario</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="producto:${producto}">
+                    <td th:text="${producto.codigo}">Mark</td>
+                    <td th:text="${producto.cantidad}">Mark</td>
+                    <td th:text="${producto.descripcion}">Otto</td>
+                    <td th:text="${producto.categoria}">@mdo</td>
+                    <td th:text="${producto.precio_unitario}">@mdo</td>
+                    <td th:text="${producto.costo_unitario}">@mdo</td> 
+                    <td>
+                        <a th:href="@{/producto/editar/{id}(id=${producto.id})}" class="btn btn-info">Editar</a>
+                        <a th:href="@{/producto/{id}(id=${producto.id})}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody> 
     </body>
 </html>

@@ -7,7 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
-import java.util.Date;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "estudiamtes")
@@ -16,6 +16,7 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "nit_dpi",nullable = false, unique = true)
+    @NotEmpty(message = "El nit no debe estar vacio") 
     private String nit_dpi;
     @Column(name = "nombre",nullable = false)
     private String nombre;
@@ -33,6 +34,7 @@ public class Cliente {
     public Cliente() {
     }
 
+    
     public Cliente(Long id, String nit_dpi, String nombre, String direccion, String email, String notas, LocalDate fecha_ingreso, String estado) {
         this.id = id;
         this.nit_dpi = nit_dpi;
