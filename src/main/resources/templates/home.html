@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Punto De Venta</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </head>    
+    <header>      
+        <!-- Mensajes-->
+    <div class="alert alert-success alert-dismissable" th:if="${success != null}">
+        <label th:text="${success}"></label>
+    </div>
+    </header>
+    <body>
+        <div class ="container">
+            <div class ="row">
+                <h1>Punto de Venta</h1>
+            </div>
+            <div class="row">
+                <div class="col-lg-9">
+                    <a th:href="@{/nuevo_cliente}" class="btn btn-primary btn-sm mb3">Agregar Cliente</a>
+                    <a th:href="@{/nuevo_producto}" class="btn btn-primary btn-sm mb3">Ingresar Producto</a>
+                    <a th:href="@{/nueva_venta}" class="btn btn-primary btn-sm mb3">Nueva Venta</a>
+                </div>
+            </div><br>
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">nit_dpi</th>
+                        <th scope="col">nombre</th>
+                        <th scope="col">correo</th>
+                        <th scope="col">correo</th>
+                        <th scope="col">notas</th>
+                        <th scope="col">fecha Ingreso</th>
+                        <th scope="col">estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="estudiante:${estudiante}">
+                        <td th:text="${estudiante.nit_dpi}">Mark</td>
+                        <td th:text="${estudiante.nombre}">Mark</td>
+                        <td th:text="${estudiante.direccion}">Otto</td>
+                        <td th:text="${estudiante.email}">@mdo</td>
+                        <td th:text="${estudiante.notas}">@mdo</td>
+                        <td th:text="${estudiante.fecha_ingreso}">@mdo</td> 
+                        <td th:text="${estudiante.estado}">@mdo</td>
+                        <td>
+                            <a th:href="@{/estudiante/editar/{id}(id=${estudiante.id})}" class="btn btn-info">Editar</a>
+                            <a th:href="@{/estudiante/{id}(id=${estudiante.id})}" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody> 
+        </div>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">codigo</th>
+                    <th scope="col">cantidad</th>
+                    <th scope="col">descripcion</th>
+                    <th scope="col">categoria</th>
+                    <th scope="col">precio_unitario</th>
+                    <th scope="col">costo_unitario</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="producto:${producto}">
+                    <td th:text="${producto.codigo}">Mark</td>
+                    <td th:text="${producto.cantidad}">Mark</td>
+                    <td th:text="${producto.descripcion}">Otto</td>
+                    <td th:text="${producto.categoria}">@mdo</td>
+                    <td th:text="${producto.precio_unitario}">@mdo</td>
+                    <td th:text="${producto.costo_unitario}">@mdo</td> 
+                    <td>
+                        <a th:href="@{/producto/editar/{id}(id=${producto.id})}" class="btn btn-info">Editar</a>
+                        <a th:href="@{/producto/{id}(id=${producto.id})}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody> 
+    </body>
+</html>

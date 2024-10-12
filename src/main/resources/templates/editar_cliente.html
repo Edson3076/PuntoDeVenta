@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Registro de Prodcutos</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </head>    
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+                    <h1 class="text-center">Editar Cliente</h1>
+                    <div class="card-body">
+                        <form th:action="@{/estudiante/{id}(id=${estudiante.id})}" th:object="${estudiante}" method="POST">
+                            <div class="form-group">
+                                <label>Nit/DPI</label>
+                                <input type="text" name="nit_dpi" th:field="*{nit_dpi}" class="form-control" placeholder="Digite su NIT/DPI" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Nombre</label>
+                                <input type="text" name="name" th:field="*{nombre}" class="form-control" placeholder="Digite su nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label>direccion</label>
+                                <input type="text" name="direccion" th:field="*{direccion}" class="form-control" placeholder="Digite el codigo">
+                            </div>
+                            <div class="form-group">
+                                <label>correo</label>
+                                <input type="text" name="email" th:field="*{email}" class="form-control" placeholder="Descripcion" required>
+                            </div>
+                            <div class="form-group">
+                                <label>notas</label>
+                                <input type="text" name="notas" th:field="*{notas}" class="form-control" placeholder="Digite el codigo">
+                            </div>
+                            <div class="form-group">
+                                <label>fecha_ingreso: </label>
+                                <input type="date" name="fecha_ingreso" th:field="*{fecha_ingreso}" class="form-control", required>
+                            </div>
+                            <div class="form-group">
+                                <label>estado:</label>
+                                <input type="text" name="estado" th:field="*{estado}" class="form-control" placeholder="Digite la cantidad">
+                            </div>
+                            <div class="box-footer">
+                                <button class="btn btn-success">Guardar</button>
+                                <a href="/">
+                                <button type="button">Cancelar</button></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
