@@ -12,10 +12,10 @@
                 <div class="col-lg-6 col-md-2 col-sm-3 container justify-content-center card">
                     <h1 class="text-center">Ingreso de Cliente</h1>
                     <div class="card-body">
-                        <form th:action="@{/cliente}" th:object="${estudiante}" method="POST">
+                        <form th:action="@{/nuevo_cliente}" th:object="${estudiante}" method="POST">
                             <div class="form-group">
                                 <label>Nit/DPI</label>
-                                <input type="text" name="nit_dpi" th:field="*{nit_dpi}" class="form-control" placeholder="Digite su NIT/DPI" pattern="\d{4}">
+                                <input type="text" name="nit_dpi" th:field="*{nit_dpi}" class="form-control" placeholder="Digite su NIT/DPI">
                                 <small class="form-text text-danger" th:if="${#fields.hasErrors('nit_dpi')}" th:errors="*{nit_dpi}"></small>
                             </div>
                             <div class="form-group">

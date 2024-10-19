@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
-public class ClienteControlador {
+public class Controlador {
 
     @Autowired
     private ClienteServicio servicio;
@@ -38,7 +38,7 @@ public class ClienteControlador {
         return "crear_cliente";
     }
     
-    @PostMapping("/cliente")
+    @PostMapping("/nuevo_cliente")
     public String guardarEstudiante(@Valid @ModelAttribute("estudiante") Cliente estudiante, BindingResult result, Model modelo, 
             RedirectAttributes attribute) {
         if (result.hasErrors()) {

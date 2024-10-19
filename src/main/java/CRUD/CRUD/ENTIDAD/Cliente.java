@@ -7,7 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "estudiamtes")
@@ -15,14 +15,17 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     @Column(name = "nit_dpi",nullable = false, unique = true)
+    @Pattern(regexp = "(\\d{13}|\\d{8})", 
+            message = "Debe ingresar un DPI (13 dígitos) o un NIT válido (8 dígitos sin guion)")
     @NotEmpty(message = "El nit no debe estar vacio") 
     private String nit_dpi;
-    @Column(name = "nombre",nullable = false)
+    @Column(name = "nombre")
     private String nombre;
     @Column(name = "direccion")
     private String direccion;
-    @Column(name = "email",nullable = false)
+    @Column(name = "email")
     private String email;
     @Column(name = "notas")
     private String notas;
