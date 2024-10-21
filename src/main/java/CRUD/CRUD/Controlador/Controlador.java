@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import CRUD.CRUD.Servicio.ClienteServicio;
 import CRUD.CRUD.Servicio.ProductoServicio;
+import CRUD.CRUD.Servicio.ValidadorNitDpiImpl;
 import jakarta.validation.Valid;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 
 @Controller
 public class Controlador {
@@ -23,47 +23,49 @@ public class Controlador {
     private ClienteServicio servicio;
     @Autowired
     private ProductoServicio serviciop;
-    
+
     @GetMapping({"", "/"})
     public String listarEstudiantes(Model modelo) {
-        modelo.addAttribute("estudiante",servicio.listarTodosLosEstudiantes());
+        modelo.addAttribute("estudiante", servicio.listarTodosLosEstudiantes());
         modelo.addAttribute("producto", serviciop.listarProductos());
         return "home";
     }
 
     @GetMapping("/nuevo_cliente")
     public String mostrarFormularioDeRegistrarEstudiante(Model modelo) {
-        Cliente estudiante = new Cliente();
-        modelo.addAttribute("estudiante", estudiante);
+        Cliente cliente = new Cliente();
+        modelo.addAttribute("estudiante", cliente);
         return "crear_cliente";
     }
-    
+
     @PostMapping("/nuevo_cliente")
-    public String guardarEstudiante(@Valid @ModelAttribute("estudiante") Cliente estudiante, BindingResult result, Model modelo, 
-            RedirectAttributes attribute) {
+    public String guardarEstudiante(@Valid @ModelAttribute("estudiante") Cliente cliente, BindingResult result,
+            Model modelo, RedirectAttributes attribute) {
         if (result.hasErrors()) {
+            modelo.addAttribute("error", result.getFieldError().getDefaultMessage());
             return "crear_cliente";
         }
-        servicio.guardarEstudiante(estudiante);
+        servicio.guardarEstudiante(cliente);
         attribute.addFlashAttribute("success", "Guardado con exito");
         return "redirect:/";
     }
-    
+
     @GetMapping("/nuevo_producto")
-    public String mostrarFormularioDeIngresarProducto(Model modelo){
+    public String mostrarFormularioDeIngresarProducto(Model modelo) {
         Producto producto = new Producto();
         modelo.addAttribute("producto", producto);
         return "ingresar_producto";
     }
+
     @PostMapping("/producto")
-    public String guardarProducto(@ModelAttribute("producto") Producto producto){
+    public String guardarProducto(@ModelAttribute("producto") Producto producto) {
         serviciop.guardarProducto(producto);
         return "redirect:/";
     }
-    
+
     @GetMapping("/nueva_venta")
-    public String mostrarFormularioDeVenta(){
-    return "nueva_venta";
+    public String mostrarFormularioDeVenta() {
+        return "nueva_venta";
     }
 
     @GetMapping("/estudiante/editar/{id}")

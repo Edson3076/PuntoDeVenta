@@ -1,4 +1,3 @@
-
 package CRUD.CRUD.Servicio;
 
 import CRUD.CRUD.ENTIDAD.Cliente;
@@ -10,4 +9,5 @@ public interface ClienteServicio {
     public Cliente obtenerEstudiantePorId(Long id);
     public Cliente actualizarEstudiante(Cliente estudiante);
     public void eliminarEstudiante (Long id);
+    
 }

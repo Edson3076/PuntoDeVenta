@@ -1,5 +1,6 @@
 package CRUD.CRUD.ENTIDAD;
 
+import CRUD.CRUD.Servicio.ValidarNitDpi;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,20 +8,20 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
-import jakarta.validation.constraints.*;
 
 @Entity
-@Table(name = "estudiamtes")
+@Table(name = "estudiante")
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @Column(name = "nit_dpi",nullable = false, unique = true)
-    @Pattern(regexp = "(\\d{13}|\\d{8})", 
-            message = "Debe ingresar un DPI (13 dígitos) o un NIT válido (8 dígitos sin guion)")
-    @NotEmpty(message = "El nit no debe estar vacio") 
+    //@Pattern(regexp = "(\\d{13}|\\d{8})",message = "Debe ingresar un DPI (13 dígitos) o un NIT válido (8 dígitos sin guion)")
+    //@NotEmpty(message = "El nit no debe estar vacio") 
+    @ValidarNitDpi // validacion personalizada NIT o DPI
     private String nit_dpi;
+    
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "direccion")
@@ -36,7 +37,8 @@ public class Cliente {
     
     public Cliente() {
     }
-
+    
+    
     
     public Cliente(Long id, String nit_dpi, String nombre, String direccion, String email, String notas, LocalDate fecha_ingreso, String estado) {
         this.id = id;
