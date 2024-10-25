@@ -41,13 +41,20 @@ public class Controlador {
     @PostMapping("/nuevo_cliente")
     public String guardarEstudiante(@Valid @ModelAttribute("estudiante") Cliente cliente, BindingResult result,
             Model modelo, RedirectAttributes attribute) {
+        //servicio.guardarEstudiante(cliente);
         if (result.hasErrors()) {
             modelo.addAttribute("error", result.getFieldError().getDefaultMessage());
             return "crear_cliente";
         }
-        servicio.guardarEstudiante(cliente);
-        attribute.addFlashAttribute("success", "Guardado con exito");
-        return "redirect:/";
+        if (servicio.guardarEstudiante(cliente) != null) {
+            modelo.addAttribute("Mensaje", "usuario registrado");
+            attribute.addFlashAttribute("success", "Guardado con exito");
+            return "redirect:/";
+        } else{
+            //attribute.addFlashAttribute("error", "Nit o DPI Existente");
+            return "crear_cliente";
+        }
+        
     }
 
     @GetMapping("/nuevo_producto")
@@ -78,7 +85,7 @@ public class Controlador {
     public String actualizarEstudiante(@PathVariable Long id, @ModelAttribute("estudiante") Cliente estudiante, Model modelo) {
         Cliente estudianteExistente = servicio.obtenerEstudiantePorId(id);
         estudianteExistente.setId(id);
-        estudianteExistente.setNit_dpi(estudiante.getNit_dpi());
+        estudianteExistente.setNitDpi(estudiante.getNitDpi());
         estudianteExistente.setNombre(estudiante.getNombre());
         estudianteExistente.setDireccion(estudiante.getDireccion());
         estudianteExistente.setEmail(estudiante.getEmail());

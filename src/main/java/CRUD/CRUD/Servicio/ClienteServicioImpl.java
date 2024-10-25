@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import CRUD.CRUD.Repositorio.ClienteRepositorio;
+import java.util.Optional;
+import org.aspectj.bridge.MessageUtil;
 
 @Service
 public class ClienteServicioImpl implements ClienteServicio{
@@ -18,8 +20,14 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     @Override
     public Cliente guardarEstudiante(Cliente estudiante) {
-        
+        Optional<Cliente> nitDpiExistente = repositorio.findByNitDpi(estudiante.getNitDpi());
+        if (nitDpiExistente.isPresent()) {
+            
+            return estudiante=null;
+        }else{
         return repositorio.save(estudiante);
+        }
+        
     }
 
     @Override

@@ -15,7 +15,7 @@
                         <form th:action="@{/estudiante/{id}(id=${estudiante.id})}" th:object="${estudiante}" method="POST">
                             <div class="form-group">
                                 <label>Nit/DPI</label>
-                                <input type="text" name="nit_dpi" th:field="*{nit_dpi}" class="form-control" placeholder="Digite su NIT/DPI" required>
+                                <input type="text" name="nitDpi" th:field="*{nit_dpi}" class="form-control" placeholder="nitDpi su NIT/DPI" required>
                             </div>
                             <div class="form-group">
                                 <label>Nombre</label>

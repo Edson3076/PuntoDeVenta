@@ -10,6 +10,7 @@
         <!-- Mensajes-->
     <div class="alert alert-success alert-dismissable" th:if="${success != null}">
         <label th:text="${success}"></label>
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
     </div>
     </header>
     <body>
@@ -39,7 +40,7 @@
                 </thead>
                 <tbody>
                     <tr th:each="estudiante:${estudiante}">
-                        <td th:text="${estudiante.nit_dpi}">Mark</td>
+                        <td th:text="${estudiante.nitDpi}">Mark</td>
                         <td th:text="${estudiante.nombre}">Mark</td>
                         <td th:text="${estudiante.direccion}">Otto</td>
                         <td th:text="${estudiante.email}">@mdo</td>

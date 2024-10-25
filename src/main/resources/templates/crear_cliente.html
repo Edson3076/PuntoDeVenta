@@ -5,23 +5,32 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    </head>    
+    </head>  
+    <header>      
+        <!-- Mensajes
+        <div class="alert alert-danger alert-dismissable" th:if="${error != null}">
+            <label th:text="${error}"></label>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+        -->
+    </header>
     <body>
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-2 col-sm-3 container justify-content-center card">
                     <h1 class="text-center">Ingreso de Cliente</h1>
                     <div class="card-body">
-                        
+
                         <form th:action="@{/nuevo_cliente}" th:object="${estudiante}" method="POST">
                             <div class="form-group">
                                 <label>Nit/DPI</label>
-                                <input type="text" name="nit_dpi" th:field="*{nit_dpi}" class="form-control" placeholder="Digite su NIT/DPI">
-                                <small class="form-text text-danger" th:if="${#fields.hasErrors('nit_dpi')}" th:errors="*{nit_dpi}"></small>
+                                <input type="text" name="nitDpi" th:field="*{nitDpi}" class="form-control" placeholder="Digite su NIT/DPI">
+                                <small class="form-text text-danger" th:if="${#fields.hasErrors('nitDpi')}" th:errors="*{nitDpi}"></small>
                             </div>
                             <div class="form-group">
                                 <label>Nombre</label>
-                                <input type="text" name="name" th:field="*{nombre}" class="form-control" placeholder="Digite su nombre">
+                                <input type="text" name="name" th:field="*{nombre}" class="form-control" placeholder="Digite su Nombre">
+                                <small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
                             </div>
                             <div class="form-group">
                                 <label>direccion</label>
@@ -29,7 +38,8 @@
                             </div>
                             <div class="form-group">
                                 <label>correo</label>
-                                <input type="text" name="email" th:field="*{email}" class="form-control" placeholder="Descripcion">
+                                <input type="text" name="email" th:field="*{email}" class="form-control" placeholder="Ingredar correo">
+                                <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
                             </div>
                             <div class="form-group">
                                 <label>notas</label>
