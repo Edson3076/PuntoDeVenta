@@ -50,11 +50,11 @@ public class Controlador {
             modelo.addAttribute("Mensaje", "usuario registrado");
             attribute.addFlashAttribute("success", "Guardado con exito");
             return "redirect:/";
-        } else{
+        } else {
             //attribute.addFlashAttribute("error", "Nit o DPI Existente");
             return "crear_cliente";
         }
-        
+
     }
 
     @GetMapping("/nuevo_producto")
@@ -64,10 +64,21 @@ public class Controlador {
         return "ingresar_producto";
     }
 
-    @PostMapping("/producto")
-    public String guardarProducto(@ModelAttribute("producto") Producto producto) {
+    @PostMapping("/nuevo_producto")
+    public String guardarProducto(@Valid @ModelAttribute("producto") Producto producto, BindingResult result,
+            Model modelo, RedirectAttributes attribute) {
+        //servicio.guardarEstudiante(cliente);
+        if (result.hasErrors()) {
+            modelo.addAttribute("error", result.getFieldError().getDefaultMessage());
+            return "ingresar_producto";
+        }
         serviciop.guardarProducto(producto);
+        modelo.addAttribute("Mensaje", "usuario registrado");
+        attribute.addFlashAttribute("success", "Guardado con exito");
         return "redirect:/";
+        //attribute.addFlashAttribute("error", "Nit o DPI Existente");
+        //return "ingresar_producto";
+
     }
 
     @GetMapping("/nueva_venta")
@@ -102,4 +113,9 @@ public class Controlador {
         return "redirect:/";
     }
 
+    @GetMapping("/producto/{id}")
+    public String eliminarProducto(@PathVariable Long id) {
+        serviciop.eliminarProducto(id);
+        return "redirect:/";
+    }
 }

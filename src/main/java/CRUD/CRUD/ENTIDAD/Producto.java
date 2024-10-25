@@ -8,27 +8,34 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "producto")
-public class Producto implements Serializable{
-    private static final long serialVersionUID = 1L;
+public class Producto{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "codigo",nullable = false, unique = true)
-    private int Codigo;
-    @Column(name = "cantidad",nullable = false)
+    
+    @Column(name = "codigo")
+    @NotNull(message = "El codigo no debe estar vacio")
+    @Min(value = 0, message = "El valor debe ser mayor a 0")
+    private Integer codigo;
+    
+    @Column(name = "cantidad")
     private int cantidad;
-    @Column(name = "descripcion",nullable = false)
+    @Column(name = "descripcion")
     private String descripcion;
-    @Column(name = "categoria",nullable = false)
+    @Column(name = "categoria")
     private String categoria;
-    @Column(name = "precio_unitario",nullable = false)
+    @Column(name = "precio_unitario")
     private float precio_unitario;
-    @Column(name = "costo_unitario",nullable = false)
+    @Column(name = "costo_unitario")
     private float costo_unitario;
     
     //sirve para hacer relacionn de un cliente a muchos productos
@@ -39,9 +46,9 @@ public class Producto implements Serializable{
     public Producto() {
     }
 
-    public Producto(Long id, int Codigo, int cantidad, String descripcion, String categoria, float precio_unitario, float costo_unitario) {
+    public Producto(Long id, Integer codigo, int cantidad, String descripcion, String categoria, float precio_unitario, float costo_unitario) {
         this.id = id;
-        this.Codigo = Codigo;
+        this.codigo = codigo;
         this.cantidad = cantidad;
         this.descripcion = descripcion;
         this.categoria = categoria;
@@ -49,8 +56,8 @@ public class Producto implements Serializable{
         this.costo_unitario = costo_unitario;
     }
 
-    public Producto(int Codigo, int cantidad, String descripcion, String categoria, float precio_unitario, float costo_unitario) {
-        this.Codigo = Codigo;
+    public Producto(Integer codigo, int cantidad, String descripcion, String categoria, float precio_unitario, float costo_unitario) {
+        this.codigo = codigo;
         this.cantidad = cantidad;
         this.descripcion = descripcion;
         this.categoria = categoria;
@@ -66,14 +73,15 @@ public class Producto implements Serializable{
         this.id = id;
     }
 
-    public int getCodigo() {
-        return Codigo;
+    public Integer getCodigo() {
+        return codigo;
     }
 
-    public void setCodigo(int Codigo) {
-        this.Codigo = Codigo;
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
     }
 
+    
     public int getCantidad() {
         return cantidad;
     }
@@ -125,8 +133,7 @@ public class Producto implements Serializable{
 
     @Override
     public String toString() {
-        return "Producto{" + "id=" + id + ", Codigo=" + Codigo + ", cantidad=" + cantidad + ", descripcion=" + descripcion + ", categoria=" + categoria + ", precio_unitario=" + precio_unitario + ", costo_unitario=" + costo_unitario + '}';
+        return "Producto{" + "id=" + id + ", codigo=" + codigo + ", cantidad=" + cantidad + ", descripcion=" + descripcion + ", categoria=" + categoria + ", precio_unitario=" + precio_unitario + ", costo_unitario=" + costo_unitario + ", cliente=" + cliente + '}';
     }
-    
-    
+
 }

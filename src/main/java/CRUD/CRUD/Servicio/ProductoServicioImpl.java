@@ -23,7 +23,7 @@ public class ProductoServicioImpl implements ProductoServicio{
 
     @Override
     public Producto obtenerProductoPorId(Long id) {
-        return repositorio.findById(id).orElse(null);
+        return repositorio.findById(id).get();
     }
 
     @Override

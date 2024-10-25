@@ -12,22 +12,24 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
                     <h1 class="text-center">Ingreso Producto</h1>
                     <div class="card-body">
-                        <form th:action="@{/producto}" th:object="${producto}" method="POST">
+                        <form th:action="@{/nuevo_producto}" th:object="${producto}" method="POST">
                             <div class="form-group">
                                 <label>codigo</label>
-                                <input type="text" name="codigo" th:field="*{codigo}" class="form-control" placeholder="Ingrese el codig" required>
+                                <input type="number" name="codigo" th:field="*{codigo}" class="form-control" placeholder="Ingrese el codigo">
+                                <small class="form-text text-danger" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></small>
+                                <button>Generar Codigo</button>
                             </div>
                             <div class="form-group">
                                 <label>Cantidad</label>
-                                <input type="number" name="cantidad" th:field="*{cantidad}" class="form-control" placeholder="Digite la cantidad" required>
+                                <input type="number" name="cantidad" th:field="*{cantidad}" class="form-control" placeholder="Digite la cantidad">
                             </div>
                             <div class="form-group">
                                 <label>descripcion</label>
-                                <input type="text" name="descripcion" th:field="*{descripcion}" class="form-control" placeholder="Escrib una descripcion" required>
+                                <input type="text" name="descripcion" th:field="*{descripcion}" class="form-control" placeholder="Escrib una descripcion">
                             </div>
                             <div class="form-group">
                                 <label>categoria</label>
-                                <input type="text" name="categoria" th:field="*{categoria}" class="form-control" placeholder="Escriba la categoria" required>
+                                <input type="text" name="categoria" th:field="*{categoria}" class="form-control" placeholder="Escriba la categoria">
                             </div>
                             <div class="form-group">
                                 <label>precio unitarios</label>
@@ -35,12 +37,11 @@
                             </div>
                             <div class="form-group">
                                 <label>costo unitario</label>
-                                <input type="number" name="costo_unitario" th:field="*{costo_unitario}" class="form-control", required>
+                                <input type="number" name="costo_unitario" th:field="*{costo_unitario}" class="form-control">
                             </div>
                             <div class="box-footer">
                                 <button class="btn btn-success">Guardar</button>
-                                <a href="/">
-                                <button type="button">Cancelar</button></a>
+                                <a th:href="@{/}" class="btn btn-danger" onclick="return confirm('Estas seguro?');">Cancelar</a>
                                 <a th:href="@{/producto}" class="btn btn-primary btn-sm mb3">Productos</a>
                             </div>
                         </form>
