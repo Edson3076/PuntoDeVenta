@@ -36,5 +36,11 @@ public class ProductoServicioImpl implements ProductoServicio{
         repositorio.deleteById(id);
     }
 
+    @Override
+    public Integer generarNuevoCodigo() {
+        Integer codigoMaximo = repositorio.obtenerCodigoMaximo();
+        return (codigoMaximo !=null ? codigoMaximo:0)+1;
+    }
+
     
 }

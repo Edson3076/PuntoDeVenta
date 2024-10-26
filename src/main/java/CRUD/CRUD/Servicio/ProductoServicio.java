@@ -14,4 +14,6 @@ public interface ProductoServicio {
     public Producto actualizarProducto(Producto producto);
 
     public void eliminarProducto(Long id);
+    
+    public Integer generarNuevoCodigo();
 }

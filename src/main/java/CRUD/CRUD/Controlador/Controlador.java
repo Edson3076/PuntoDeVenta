@@ -14,6 +14,7 @@ import CRUD.CRUD.Servicio.ProductoServicio;
 import CRUD.CRUD.Servicio.ValidadorNitDpiImpl;
 import jakarta.validation.Valid;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -23,7 +24,7 @@ public class Controlador {
     private ClienteServicio servicio;
     @Autowired
     private ProductoServicio serviciop;
-
+    
     @GetMapping({"", "/"})
     public String listarEstudiantes(Model modelo) {
         modelo.addAttribute("estudiante", servicio.listarTodosLosEstudiantes());
@@ -57,6 +58,13 @@ public class Controlador {
 
     }
 
+        //Endpoint para obtener el proximo codigo
+    @GetMapping("/producto/obtenerNuevoCodigo")
+    @ResponseBody
+    public Integer obtenerNuevoCodigo(){
+        return serviciop.generarNuevoCodigo();
+    }
+    
     @GetMapping("/nuevo_producto")
     public String mostrarFormularioDeIngresarProducto(Model modelo) {
         Producto producto = new Producto();
