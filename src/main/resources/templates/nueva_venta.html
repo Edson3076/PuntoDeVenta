@@ -1,15 +1,34 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Venta</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </head>
     <body>
         <div>Nueva Venta</div>
+        <form th:action="@{/nueva_venta}" th:object="${venta}" method="POST">
+            <div>
+                <label for="cliente">Cliente:</label>
+                <select id="cliente" th:field="*{cliente}" required>
+                    <option value="" disabled selected>Seleccione un Cliente</option>
+                    <option th:each="cliente : ${clientes}" 
+                            th:value="${cliente.id}" 
+                            th:text="${cliente.nombre}"></option>
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('cliente')}" th:errors="*{cliente}"></small>
+                </select>
+            </div>
+            <div>
+                <label for="productos">Productos:</label>
+                <select id="productos" th:field="*{productos}" multiple required>
+                    <option th:each="producto:${productos}" 
+                            th:value="${producto.id}" 
+                            th:text="${producto.descripcion}">Producto</option>
+                </select><br>
+            </div>
+            <button class="btn btn-success">Guardar</button>
+        </form>
     </body>
 </html>

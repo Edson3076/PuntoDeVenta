@@ -8,8 +8,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import CRUD.CRUD.Repositorio.ClienteRepositorio;
 import CRUD.CRUD.Repositorio.ProductoRepositorio;
-
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+   
 @SpringBootApplication
+@EnableJpaRepositories(basePackages = "CRUD.CRUD.Repositorio")
 public class CrudApplication implements CommandLineRunner{
 
 	public static void main(String[] args) {

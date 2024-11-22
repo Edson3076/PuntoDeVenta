@@ -2,6 +2,9 @@ package CRUD.CRUD.Controlador;
 
 import CRUD.CRUD.ENTIDAD.Cliente;
 import CRUD.CRUD.ENTIDAD.Producto;
+import CRUD.CRUD.ENTIDAD.Venta;
+import CRUD.CRUD.Repositorio.ClienteRepositorio;
+import CRUD.CRUD.Repositorio.ProductoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import CRUD.CRUD.Servicio.ClienteServicio;
 import CRUD.CRUD.Servicio.ProductoServicio;
 import CRUD.CRUD.Servicio.ValidadorNitDpiImpl;
+import CRUD.CRUD.Servicio.VentaServicio;
 import jakarta.validation.Valid;
+import java.util.List;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -24,7 +29,9 @@ public class Controlador {
     private ClienteServicio servicio;
     @Autowired
     private ProductoServicio serviciop;
-    
+    @Autowired
+    private VentaServicio serviciov;
+
     @GetMapping({"", "/"})
     public String listarEstudiantes(Model modelo) {
         modelo.addAttribute("estudiante", servicio.listarTodosLosEstudiantes());
@@ -58,13 +65,13 @@ public class Controlador {
 
     }
 
-        //Endpoint para obtener el proximo codigo
+    //Endpoint para obtener el proximo codigo
     @GetMapping("/producto/obtenerNuevoCodigo")
     @ResponseBody
-    public Integer obtenerNuevoCodigo(){
+    public Integer obtenerNuevoCodigo() {
         return serviciop.generarNuevoCodigo();
     }
-    
+
     @GetMapping("/nuevo_producto")
     public String mostrarFormularioDeIngresarProducto(Model modelo) {
         Producto producto = new Producto();
@@ -87,11 +94,6 @@ public class Controlador {
         //attribute.addFlashAttribute("error", "Nit o DPI Existente");
         //return "ingresar_producto";
 
-    }
-
-    @GetMapping("/nueva_venta")
-    public String mostrarFormularioDeVenta() {
-        return "nueva_venta";
     }
 
     @GetMapping("/estudiante/editar/{id}")
